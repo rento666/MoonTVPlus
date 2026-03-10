@@ -1415,9 +1415,16 @@ function PlayPageClient() {
     }
 
     // 获取当前集数的播放地址
-    const episodeUrl = detail.episodes[currentEpisodeIndex];
+    let episodeUrl = detail.episodes[currentEpisodeIndex];
     if (!episodeUrl) {
       return;
+    }
+
+    if (currentSource === 'directplay') {
+      const tokenParam = proxyToken ? `&token=${encodeURIComponent(proxyToken)}` : '';
+      episodeUrl = `/api/proxy-m3u8?url=${encodeURIComponent(episodeUrl)}&source=directplay${tokenParam}`;
+    } else if (sourceProxyMode) {
+      episodeUrl = `/api/proxy/vod/m3u8?url=${encodeURIComponent(episodeUrl)}&source=${encodeURIComponent(currentSource)}`;
     }
 
     try {
@@ -1469,10 +1476,19 @@ function PlayPageClient() {
               return null;
             }
 
-            const episodeUrl =
+            let episodeUrl =
               source.episodes.length > 1
                 ? source.episodes[1]
                 : source.episodes[0];
+
+            // 对优选源进行测速时也需要考虑代理情况
+            if (source.source === 'directplay') {
+              const tokenParam = proxyToken ? `&token=${encodeURIComponent(proxyToken)}` : '';
+              episodeUrl = `/api/proxy-m3u8?url=${encodeURIComponent(episodeUrl)}&source=directplay${tokenParam}`;
+            } else if (source.proxyMode) {
+              episodeUrl = `/api/proxy/vod/m3u8?url=${encodeURIComponent(episodeUrl)}&source=${encodeURIComponent(source.source)}`;
+            }
+
             const testResult = await getVideoResolutionFromM3u8(episodeUrl);
 
             return {
