@@ -88,7 +88,7 @@
 
 本项目**支持 Docker、Vercel 和 Cloudflare Workers 平台** 部署。
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mtvpls/MoonTVPlus)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/rento666/MoonTVPlus)
 
 **一键部署到 Zeabur**
 
@@ -96,7 +96,7 @@
 
 **一键部署到 Render**
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/mtvpls/MoonTVPlus)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/rento666/MoonTVPlus)
 
 
 
